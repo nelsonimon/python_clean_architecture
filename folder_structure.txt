@@ -1,0 +1,42 @@
+configuration.py
+folder_structure.txt
+main.py
+project_structure.py
+requirements.txt
+settings.ini
+entities/
+    task.py
+frameworks_drivers/
+    data_access/
+        in_file/
+            task_repository.py
+            temp/
+                1.txt
+                2.txt
+                3.txt
+                4.txt
+                5.txt
+        in_memory/
+            task_repository.py
+    frameworks/
+        fastapi/
+            main.py
+        flask/
+            main.py
+interface_adapters/
+    adapters/
+        fastapi/
+            task_adapter.py
+        flask/
+            task_adapter.py
+    controllers/
+        task_controller.py
+use_cases/
+    task/        create_task.py
+        list_tasks.py
+        show_task.py
+        dtos/
+            create_task.py
+            show_task.py
+        interfaces_repositories/
+            i_task_repository.py
