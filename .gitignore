@@ -1,0 +1,22 @@
+# Editors
+.vscode/
+.idea/
+
+# Python cache
+__pycache__
+
+# Windows
+Thumbs.db
+# C extensions
+*.so
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
