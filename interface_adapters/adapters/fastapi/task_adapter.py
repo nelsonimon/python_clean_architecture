@@ -11,7 +11,7 @@ from use_cases.task.dtos.show_task import ShowTaskOutputDto
 class TaskAdapterDto:
     create_task_input_dto = pydantic.dataclasses.dataclass(CreateTaskInputDto)
     create_task_output_dto = pydantic.dataclasses.dataclass(CreateTaskOutputDto)
-    list_task_output_dto = pydantic.dataclasses.dataclass(ShowTaskOutputDto)
+    show_task_output_dto = pydantic.dataclasses.dataclass(ShowTaskOutputDto)
 
 class TaskAdapter:
     
@@ -26,8 +26,13 @@ class TaskAdapter:
        
     #list tasks
     @classmethod
-    def list_task_output(cls, output:List[ShowTaskOutputDto])->List[TaskAdapterDto.list_task_output_dto]:
+    def list_task_output(cls, output:List[ShowTaskOutputDto])->List[TaskAdapterDto.show_task_output_dto]:
         return [asdict(tasks) for tasks in output]
+
+    #show task
+    @classmethod
+    def show_task_output(cls, output:ShowTaskOutputDto)->TaskAdapterDto.show_task_output_dto:
+        return TaskAdapterDto.show_task_output_dto(**asdict(output))
 
     #private methods
     @staticmethod

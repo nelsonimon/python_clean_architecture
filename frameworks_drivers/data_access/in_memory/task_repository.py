@@ -12,8 +12,12 @@ class InMemoryTaskRepository(ITaskRepository):
         
     def get_by_id(self, id:int) -> Union[Task,None]:
         try:
-            return next(task for task in self.tasks if task.id == id)
+            for task in self.tasks:
+                if(task.id==int(id)):
+                    return task
         except StopIteration:
+            raise Exception
+        else:
             raise Exception
 
     def get_all(self) -> List[Task]:

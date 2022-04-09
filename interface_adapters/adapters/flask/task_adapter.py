@@ -25,6 +25,11 @@ class TaskAdapter:
             [asdict(tasks) for tasks in output], default=cls.__defaut_json_encoder
         )
 
+    #show task
+    @classmethod
+    def show_task_output(cls, output:ShowTaskOutputDto)->str:
+        return json.dumps(asdict(output), default=cls.__defaut_json_encoder)
+
     #private methods
     @staticmethod
     def __defaut_json_encoder(obj: object)->Any:

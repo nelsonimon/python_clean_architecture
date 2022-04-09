@@ -25,6 +25,15 @@ def criar_tarefa():
     output = TaskAdapter.create_task_output(dto_output)
     return output
 
+@app.route("/mostrar_tarefa/<id>", methods=["GET"])
+def mostrar_tarefa(id:int):
+    dto_output = TaskController.show_task(id)
+    if(dto_output is None):
+        return abort(404, f"id = {id}")
+
+    output = TaskAdapter.show_task_output(dto_output)    
+    return output
+
 @app.errorhandler(404)
 def resource_not_found(e):
     return jsonify(error=str(e)), 404

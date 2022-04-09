@@ -16,10 +16,13 @@ class InFileTaskRepository(ITaskRepository):
         self.dir = os.path.join(os.getcwd(),'frameworks_drivers/data_access/in_file/temp')
         
     def get_by_id(self, id:int) -> Union[Task,None]:
-        try:
-            return next(task for task in self.tasks if task.id == id)
-        except StopIteration:
-            raise Exception
+        self.tasks=[]
+        file_path = f"{self.dir}\{id}.txt"
+        if (os.path.isfile(file_path)):
+            self.__read_text_file(file_path)
+            return self.tasks[0]
+        else:
+            raise Exception("No data found")
 
     def get_all(self) -> List[Task]:
         self.tasks=[]
