@@ -13,20 +13,20 @@ _port = configuration.settings.get("Flask","port")
 
 ############################################
 @app.route("/", methods=["GET"])
-def listar_tarefas():
+def list_tasks():
     output_dto  = TaskController.list_tasks()
     output = TaskAdapter.list_task_output(output_dto)
     return output
 
-@app.route("/criar_tarefa/", methods=["POST"])
-def criar_tarefa():
+@app.route("/create_task/", methods=["POST"])
+def create_task():
     input = TaskAdapter.create_task_input(request.json)
     dto_output = TaskController.create_task(input)
     output = TaskAdapter.create_task_output(dto_output)
     return output
 
-@app.route("/mostrar_tarefa/<id>", methods=["GET"])
-def mostrar_tarefa(id:int):
+@app.route("/task/<id>", methods=["GET"])
+def show_task(id:int):
     dto_output = TaskController.show_task(id)
     if(dto_output is None):
         return abort(404, f"id = {id}")
