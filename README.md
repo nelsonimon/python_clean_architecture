@@ -28,3 +28,4 @@ A simple to do list in python with clean architecture
 
 7) To run:
     Run the main.py file in root folder
+    
