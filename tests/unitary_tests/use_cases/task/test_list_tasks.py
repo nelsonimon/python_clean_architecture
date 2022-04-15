@@ -25,5 +25,4 @@ class TestListTasksUseCase(TestCase):
             MockITaskRepository.get_all.return_value = self.__tasks
             use_case = ListTasks(MockITaskRepository)
             result=use_case.execute()
-            print(result)
             assert result==self.__tasks

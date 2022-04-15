@@ -17,6 +17,11 @@ class TestCreateTaskUseCase(TestCase):
                                         success=True,
                                         error_message=""
                                 )
+    
+    __create_task_error_output = CreateTaskOutputDto(
+                                        success=False,
+                                        error_message="Error"
+                                )
 
     def test_create_task_success(self):
         with mock.patch('use_cases.task.interfaces_repositories.i_task_repository.ITaskRepository') as MockITaskRepository:
@@ -24,3 +29,10 @@ class TestCreateTaskUseCase(TestCase):
             use_case = CreateTask(MockITaskRepository)
             result=use_case.execute(self.__task_input)
             assert result==self.__create_task_success_output
+
+    def test_create_task_error(self):
+        with mock.patch('use_cases.task.interfaces_repositories.i_task_repository.ITaskRepository') as MockITaskRepository:
+            MockITaskRepository.save.side_effect = Exception("Error")
+            use_case = CreateTask(MockITaskRepository)
+            result=use_case.execute(self.__task_input)
+            assert result==self.__create_task_error_output
